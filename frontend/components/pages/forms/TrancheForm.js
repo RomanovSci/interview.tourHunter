@@ -47,7 +47,7 @@ export default class TrancheForm extends Component {
             .then(({data}) => {
 
                 if (data.hasOwnProperty('success') && data.success) {
-                    NotificationManager.success('Funds been transferred successfully');
+                    location.reload();
                     return;
                 }
 
