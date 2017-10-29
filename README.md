@@ -6,4 +6,4 @@
 * Apply migration with `php yii migrate` console command
 3) Build frontend: `npm run build`
 4) Run server: `php yii serve`
-5) Open `https://localhost:8080` in your browser
+5) Open `http://localhost:8080` in your browser
