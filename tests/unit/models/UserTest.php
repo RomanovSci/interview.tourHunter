@@ -12,9 +12,7 @@ class UserTest extends \Codeception\Test\Unit
      */
     public function testTableName()
     {
-        $actualResult = User::tableName();
-        $expectedResult = 'user';
-        $this->assertSame($expectedResult, $actualResult);
+        $this->assertSame('user', User::tableName());
     }
 
     /**
@@ -99,6 +97,16 @@ class UserTest extends \Codeception\Test\Unit
 
         $actualResult = $user->validateAuthKey(1);
         $this->assertSame(true, $actualResult);
+    }
+
+    /**
+     * @see User::rules()
+     */
+    public function testRules()
+    {
+        /** @var User $user */
+        $user = new User();
+        $this->assertInternalType('array', $user->rules());
     }
 
     /**

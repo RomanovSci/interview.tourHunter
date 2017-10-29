@@ -30,24 +30,12 @@ class Balance extends ActiveRecord
     }
 
     /**
-     * Get user
-     *
-     * @return ActiveRecord
-     */
-    public function user()
-    {
-        return User::findOne([
-            'id' => $this->getAttribute('user_id')
-        ]);
-    }
-
-    /**
      * Transfer funds
      *
      * @param float $amount
      * @return bool
      */
-    public function tranche($amount)
+    public function tranche($amount): bool
     {
         $dbTransaction = \Yii::$app->db->beginTransaction();
 
