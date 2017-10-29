@@ -3,9 +3,9 @@
 namespace tests\models;
 
 use app\models\Balance;
-use Codeception\Util\Stub;
+use Codeception\Test\Unit;
 
-class BalanceTest extends \Codeception\Test\Unit
+class BalanceTest extends Unit
 {
     /**
      * @see Balance::tableName()

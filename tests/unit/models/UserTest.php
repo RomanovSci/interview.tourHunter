@@ -4,8 +4,9 @@ namespace tests\models;
 
 use app\models\User;
 use Codeception\Util\Stub;
+use Codeception\Test\Unit;
 
-class UserTest extends \Codeception\Test\Unit
+class UserTest extends Unit
 {
     /**
      * @see User::tableName()
