@@ -82,21 +82,25 @@ export default class Login extends Component {
         /** Render login page **/
         return (
             <div className="container">
+                <br/><br/>
                 <div className="row">
-                    <form className="form" onSubmit={this.handleSubmit.bind(this)}>
-                        <input
-                            className="form-control"
-                            name="User[username]"
-                            type="text"
-                            placeholder="Username"
-                            value={this.state.username}
-                            onChange={this.handleInputChange.bind(this, 'username')}
-                        />
-                        <input
-                            className="btn btn-success"
-                            type="submit"
-                            value="login"
-                        />
+                    <form className="com-md-3" onSubmit={this.handleSubmit.bind(this)}>
+                        <div className="form-group">
+                            <input
+                                id="username"
+                                className="form-control"
+                                placeholder="username"
+                                value={this.state.username}
+                                onChange={this.handleInputChange.bind(this, 'username')}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <input
+                                className="btn btn-success"
+                                type="submit"
+                                value="login"
+                            />
+                        </div>
                     </form>
                 </div>
             </div>
