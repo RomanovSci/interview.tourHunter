@@ -63,6 +63,7 @@ class AuthController extends Controller
             return [
                 'authorized' => true,
                 'username' => $user->getAttribute('username'),
+                'amount' => $user->getBalance()->getAttribute('amount'),
                 'transactions' => $user->getTransactions(),
             ];
         }

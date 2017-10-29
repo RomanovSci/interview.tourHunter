@@ -10,6 +10,7 @@ export default class Personal extends Component {
 
         this.state = {
             username: '',
+            amount: '',
             transactions: [],
 
             checked: false,
@@ -27,6 +28,7 @@ export default class Personal extends Component {
                     authorized: data.authorized,
                     username: data.username,
                     transactions: data.transactions,
+                    amount: data.amount,
                 });
             }
         });
@@ -50,10 +52,18 @@ export default class Personal extends Component {
 
         return (
             <div>
-                <div className="user-info">
-                    <h1>{this.state.username}</h1>
-                    <button className="btn btn-danger" onClick={this.logout.bind(this)}>Logout</button>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-12 text-center">
+                            <h1>{this.state.username}</h1>
+                            <h3>{this.state.amount}</h3>
+                            <button className="btn btn-danger" onClick={this.logout.bind(this)}>
+                                Logout
+                            </button>
+                        </div>
+                    </div>
                 </div>
+                <br/><br/>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6">
