@@ -56,15 +56,11 @@ class Balance extends ActiveRecord
                 $senderBalance->getAttribute('amount') - $amount
             );
 
-            $transactionAttributesMap = [
+            $transaction->setAttributes([
                 'amount' => $amount,
                 'sender_id' => \Yii::$app->user->identity->getAttribute('id'),
                 'recipient_id' => $this->getAttribute('user_id'),
-            ];
-
-            foreach ($transactionAttributesMap as $attr => $value) {
-                $transaction->setAttribute($attr, $value);
-            }
+            ]);
 
             if (
                 !$this->save() ||

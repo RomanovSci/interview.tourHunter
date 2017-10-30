@@ -37,6 +37,11 @@ class BalanceController extends Controller
         $recipient = User::findOrCreateByUsername(
             \Yii::$app->request->bodyParams['recipient']
         );
+
+        if (!$recipient instanceof User) {
+            return ['success' => false];
+        }
+
         $trancheResult = $recipient->getBalance()->tranche(
             (float) \Yii::$app->request->bodyParams['amount']
         );
