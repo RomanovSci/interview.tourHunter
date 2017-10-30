@@ -27,4 +27,16 @@ class Transaction extends ActiveRecord
             [['sender_id', 'recipient_id'], 'integer'],
         ];
     }
+
+    /**
+     * Get transaction owner
+     *
+     * @return null|ActiveRecord
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::class, [
+            'id' => 'sender_id',
+        ])->one();
+    }
 }

@@ -15,10 +15,6 @@ class AuthController extends Controller
     public function behaviors(): array
     {
         return array_merge(parent::behaviors(), [
-            'authenticator' => [
-                'class' => HttpBasicAuth::class,
-                'except' => ['login', 'check'],
-            ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [

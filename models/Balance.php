@@ -29,6 +29,19 @@ class Balance extends ActiveRecord
         ];
     }
 
+
+    /**
+     * Get user
+     *
+     * @return null|ActiveRecord
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::class, [
+            'id' => 'user_id',
+        ])->one();
+    }
+
     /**
      * Transfer funds
      *

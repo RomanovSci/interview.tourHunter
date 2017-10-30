@@ -15,12 +15,6 @@ class UserController extends Controller
     public function behaviors()
     {
         return array_merge(parent::behaviors(), [
-            'authenticator' => [
-                'class' => HttpBasicAuth::class,
-                'except' => [
-                    'all',
-                ]
-            ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
