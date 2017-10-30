@@ -42,12 +42,8 @@ class BalanceController extends Controller
             return ['success' => false];
         }
 
-        $trancheResult = $recipient->getBalance()->tranche(
+        return $recipient->getBalance()->tranche(
             (float) \Yii::$app->request->bodyParams['amount']
         );
-
-        return [
-            'success' => $trancheResult,
-        ];
     }
 }

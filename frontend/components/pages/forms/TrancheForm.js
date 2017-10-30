@@ -28,11 +28,6 @@ export default class TrancheForm extends Component {
            return;
         }
 
-        if (this.state.recipient === this.props.username) {
-            NotificationManager.error("You can't transfer funds to yourself");
-            return;
-        }
-
         axios({
             url: '/api/balance/tranche',
             method: 'POST',
@@ -51,7 +46,7 @@ export default class TrancheForm extends Component {
                     return;
                 }
 
-                NotificationManager.error('Somethig went wrong... :(');
+                NotificationManager.error(data.error);
             })
             .catch(errors => {
 

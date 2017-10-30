@@ -25,7 +25,7 @@ class Balance extends ActiveRecord
         return [
             ['user_id', 'required'],
             ['user_id', 'unique'],
-            ['user_id', 'integer']
+            ['user_id', 'integer'],
         ];
     }
 
@@ -33,10 +33,19 @@ class Balance extends ActiveRecord
      * Transfer funds
      *
      * @param float $amount
-     * @return bool
+     * @return array
      */
-    public function tranche($amount): bool
+    public function tranche($amount): array
     {
+        $sender = \Yii::$app->user->identity;
+
+        if ($sender->getAttribute('id') === $this->getAttribute('user_id')) {
+            return [
+                'success' => false,
+                'error' => 'Can\'t transfer funds to yourself',
+            ];
+        }
+
         $dbTransaction = \Yii::$app->db->beginTransaction();
 
         try {
@@ -47,10 +56,7 @@ class Balance extends ActiveRecord
             );
 
             /** @var Balance $senderBalance */
-            $senderBalance = \Yii::$app->user
-                ->identity
-                ->getBalance();
-
+            $senderBalance = $sender->getBalance();
             $senderBalance->setAttribute(
                 'amount',
                 $senderBalance->getAttribute('amount') - $amount
@@ -58,7 +64,7 @@ class Balance extends ActiveRecord
 
             $transaction->setAttributes([
                 'amount' => $amount,
-                'sender_id' => \Yii::$app->user->identity->getAttribute('id'),
+                'sender_id' => $sender->getAttribute('id'),
                 'recipient_id' => $this->getAttribute('user_id'),
             ]);
 
@@ -73,9 +79,13 @@ class Balance extends ActiveRecord
             $dbTransaction->commit();
         } catch (\Exception $e) {
             $dbTransaction->rollBack();
-            return false;
+
+            return [
+                'success' => false,
+                'error' => $e->getMessage(),
+            ];
         }
 
-        return true;
+        return ['success' => true];
     }
 }
